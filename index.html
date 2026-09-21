@@ -29,7 +29,7 @@
     body {
       background-color: var(--bg);
       color: var(--text-main);
-      padding: 20px 14px 40px;
+      padding: 16px 12px 40px;
       display: flex;
       justify-content: center;
       line-height: 1.5;
@@ -40,10 +40,9 @@
       max-width: 440px;
     }
 
-    /* 상단 헤더 영역 */
     .header-area {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .header-tag {
@@ -69,34 +68,32 @@
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 800;
       color: var(--text-main);
-      letter-spacing: -0.6px;
+      letter-spacing: -0.5px;
     }
 
     .subtitle {
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: 5px;
-      letter-spacing: -0.3px;
+      margin-top: 4px;
     }
 
-    /* 메인 카드 */
     .card {
       background: var(--card-bg);
-      border-radius: 20px;
-      padding: 22px 18px;
+      border-radius: 18px;
+      padding: 20px 16px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
       border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
     }
 
-    /* 인적사항 입력 그리드 */
     .user-info-row {
       display: grid;
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: 1.1fr 1.3fr;
       gap: 10px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .field-group {
@@ -109,7 +106,6 @@
       font-size: 12.5px;
       font-weight: 700;
       color: #334155;
-      letter-spacing: -0.2px;
     }
 
     input[type="text"], select, textarea {
@@ -130,22 +126,37 @@
       box-shadow: 0 0 0 3px var(--focus-ring);
     }
 
-    /* 자동 확장 textarea */
     textarea {
       resize: none;
-      min-height: 48px;
+      min-height: 52px;
       overflow-y: hidden;
       line-height: 1.5;
     }
 
-    /* 4개 프로젝트 작성 블록 */
+    .notice-bar {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .save-indicator {
+      font-size: 11px;
+      color: #059669;
+      font-weight: 600;
+    }
+
     .project-card {
       background: #fbfcfe;
       border: 1px solid #edf2f7;
       border-radius: 16px;
-      padding: 16px 14px;
+      padding: 15px 13px;
       margin-bottom: 14px;
-      transition: border-color 0.2s;
     }
 
     .project-card:focus-within {
@@ -157,16 +168,16 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .number-pill {
-      width: 22px;
-      height: 22px;
-      border-radius: 7px;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
       background: var(--primary);
       color: #ffffff;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -174,7 +185,7 @@
     }
 
     .project-card-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--text-main);
     }
@@ -187,32 +198,18 @@
       margin-bottom: 0;
     }
 
-    /* 안내 메시지 */
-    .notice-bar {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 11.5px;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
-
-    /* 버튼 스타일 */
     .btn {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s;
     }
 
@@ -220,100 +217,108 @@
       transform: scale(0.985);
     }
 
-    .btn-submit {
+    .btn-primary {
       background: var(--primary);
       color: #ffffff;
       box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
-      margin-top: 4px;
     }
 
-    .btn-submit:disabled {
-      background: #94a3b8;
-      box-shadow: none;
-      cursor: not-allowed;
+    .btn-edit {
+      background: #f1f5f9;
+      color: #475569;
+      margin-bottom: 10px;
+      font-size: 14px;
+      padding: 12px;
     }
 
-    /* 결과 / 확인증 뷰 */
+    .btn-edit:active {
+      background: #e2e8f0;
+    }
+
+    /* 결과 / 확인증 화면 */
     #result-view {
       display: none;
     }
 
-    .result-badge {
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 5px;
       padding: 4px 12px;
       border-radius: 9999px;
-      background: #ecfdf5;
-      color: #059669;
+      background: #fef3c7;
+      color: #b45309;
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 10px;
     }
 
+    .status-badge.confirmed {
+      background: #ecfdf5;
+      color: #059669;
+    }
+
     .user-profile-card {
       background: #f8fafc;
-      border-radius: 14px;
-      padding: 14px;
+      border-radius: 12px;
+      padding: 12px;
       text-align: center;
-      margin: 16px 0 18px;
+      margin: 12px 0 16px;
     }
 
     .user-meta-label {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-muted);
-      margin-bottom: 2px;
     }
 
     .user-meta-val {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--text-main);
+      margin-top: 2px;
     }
 
     .review-display-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .review-display-item {
       background: #fbfcfe;
       border: 1px solid #f1f5f9;
-      border-radius: 14px;
-      padding: 14px;
+      border-radius: 12px;
+      padding: 12px;
     }
 
     .disp-subject-label {
       font-size: 11px;
       font-weight: 700;
       color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
     }
 
     .disp-subject-text {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--text-main);
-      margin: 2px 0 8px;
+      margin: 2px 0 6px;
     }
 
     .disp-content-box {
-      font-size: 13.5px;
+      font-size: 13px;
       color: #334155;
       line-height: 1.5;
       white-space: pre-wrap;
       word-break: break-word;
       background: #ffffff;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 8px;
+      padding: 8px 10px;
       border: 1px solid #edf2f7;
     }
 
-    /* 도우미 확인 버튼 */
     .helper-section {
-      margin-top: 24px;
+      margin-top: 20px;
       text-align: center;
     }
 
@@ -329,17 +334,17 @@
       margin-top: 8px;
     }
 
-    /* 세련된 실선 인장(스탬프) 스타일 */
+    /* 세련된 도장 디자인 */
     .stamp-wrap {
       display: none;
-      margin: 22px auto 6px;
+      margin: 20px auto 4px;
       width: 170px;
       padding: 8px 12px;
       border: 3px solid var(--stamp-red);
       border-radius: 14px;
       position: relative;
       transform: rotate(-5deg);
-      animation: stampAppear 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+      animation: stampAppear 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
       background: rgba(254, 242, 242, 0.4);
     }
 
@@ -353,14 +358,8 @@
     }
 
     @keyframes stampAppear {
-      0% {
-        opacity: 0;
-        transform: scale(2) rotate(-20deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(-5deg);
-      }
+      0% { opacity: 0; transform: scale(2) rotate(-20deg); }
+      100% { opacity: 1; transform: scale(1) rotate(-5deg); }
     }
 
     .stamp-title {
@@ -378,7 +377,6 @@
       font-weight: 700;
       text-align: center;
       margin-top: 4px;
-      letter-spacing: 0.2px;
     }
   </style>
 </head>
@@ -389,18 +387,17 @@
     <!-- 1. 작성 화면 -->
     <div id="form-view">
       <div class="header-area">
-        <div class="header-tag">제12회 인천수학축전</div>
+        <div class="header-tag">수업 활동</div>
         <h1>주제선택프로젝트 감상평</h1>
-        <p class="subtitle">관람한 4개의 프로젝트 주제와 솔직한 감상평을 적어주세요.</p>
+        <p class="subtitle">4개 프로젝트 주제와 솔직한 감상평을 적어주세요.</p>
       </div>
 
       <div class="card">
-        <form id="reviewForm" onsubmit="handleSubmit(event)">
-          <!-- 기본 인적사항 -->
+        <form id="reviewForm" onsubmit="handleReviewCompleted(event)">
           <div class="user-info-row">
             <div class="field-group">
               <label for="grade">구분</label>
-              <select id="grade" required>
+              <select id="grade" required onchange="saveDraft()">
                 <option value="">선택</option>
                 <option value="초등학생">초등학생</option>
                 <option value="중학생">중학생</option>
@@ -411,7 +408,7 @@
 
             <div class="field-group">
               <label for="nickname">닉네임</label>
-              <input type="text" id="nickname" placeholder="재미있는 닉네임" required maxlength="12">
+              <input type="text" id="nickname" placeholder="재미있는 닉네임" required maxlength="12" oninput="saveDraft()">
             </div>
           </div>
 
@@ -419,22 +416,22 @@
             💡 개인정보 보호를 위해 실명 대신 닉네임을 적어주세요.<br>
             💡 4가지 관심있는 주제를 선택해 감상평을 작성 후 제출 완료하기<br>
             💡 제출 후 확인증을 도우미에게 보여주고 확인 도장을 받기
-           </div>
+          </div>
 
-          <!-- 프로젝트 1~4 동적 생성 영역 -->
+          <!-- 프로젝트 1~4 생성 영역 -->
           <div id="project-inputs"></div>
 
-          <button type="submit" id="submitBtn" class="btn btn-submit">
-            제출 완료하기
+          <button type="submit" id="completeBtn" class="btn btn-primary" style="margin-top: 8px;">
+            작성 완료 및 확인증 보기
           </button>
         </form>
       </div>
     </div>
 
-    <!-- 2. 결과 / 확인증 화면 -->
+    <!-- 2. 확인증 및 도우미 확인 화면 -->
     <div id="result-view">
       <div class="header-area">
-        <div class="result-badge">✓ 접수 완료</div>
+        <div id="statusBadge" class="status-badge">도우미 확인 대기 중</div>
         <h1>관람 확인증</h1>
       </div>
 
@@ -446,14 +443,18 @@
 
         <div class="review-display-list" id="disp-reviews"></div>
 
+        <!-- 수정하기 버튼 (도장 받기 전에만 표시) -->
+        <button type="button" id="editBtn" class="btn btn-edit" onclick="returnToEdit()">
+          ✎ 내용 수정하기
+        </button>
+
         <!-- 도우미 확인 영역 -->
         <div class="helper-section">
-          <button type="button" id="stampBtn" class="btn btn-stamp" onclick="applyStaffStamp()">
+          <button type="button" id="stampBtn" class="btn btn-stamp" onclick="applyStaffStampAndSubmit()">
             [도우미 전용] 확인 도장 찍기
           </button>
-          <div id="helperHint" class="helper-hint">도우미에게 화면을 보여주고 도장을 받으세요.</div>
+          <div id="helperHint" class="helper-hint">부스 도우미에게 보여주고 도장을 받으세요.</div>
 
-          <!-- 세련된 인장 디자인 -->
           <div id="stampVisual" class="stamp-wrap">
             <div class="stamp-title">확인완료</div>
             <div id="stampDateText" class="stamp-time"></div>
@@ -465,10 +466,10 @@
   </div>
 
   <script>
-    // ★ 배포한 Google Apps Script 웹앱 URL을 입력하세요 ★
-    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/AKfycbxbkIpSf1NresA2WacVQGrxO-QvsYGjIEHYpL9PHObr4OMpSmCLgAyeGFxleLQGnmSw/exec";
+    // ★ 선생님의 Google Apps Script 배포 URL ★
+const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/AKfycbxbkIpSf1NresA2WacVQGrxO-QvsYGjIEHYpL9PHObr4OMpSmCLgAyeGFxleLQGnmSw/exec";
 
-    // 4개 프로젝트 입력 폼 동적 생성
+    // 4개 블록 생성
     const container = document.getElementById("project-inputs");
     for (let i = 1; i <= 4; i++) {
       const block = document.createElement("div");
@@ -482,84 +483,100 @@
         
         <div class="project-field">
           <label for="poster${i}">관람 주제선택프로젝트 주제</label>
-          <input type="text" id="poster${i}" placeholder="관람한 프로젝트의 주제를 입력하세요" required>
+          <input type="text" id="poster${i}" placeholder="관람한 프로젝트 주제" required oninput="saveDraft()">
         </div>
 
         <div class="project-field">
           <label for="review${i}">주제선택프로젝트 관람 후 감상평 입력</label>
-          <textarea id="review${i}" placeholder="인상 깊었던 점이나 느낀 점을 자유롭게 적어주세요" required oninput="autoExpand(this)"></textarea>
+          <textarea id="review${i}" placeholder="인상 깊었던 점을 자유롭게 적어주세요" required oninput="autoExpand(this); saveDraft();"></textarea>
         </div>
       `;
       container.appendChild(block);
     }
 
-    // 텍스트 길이에 따라 높이가 자연스럽게 늘어나는 함수
     function autoExpand(field) {
       field.style.height = 'inherit';
-      const computed = window.getComputedStyle(field);
-      const height = field.scrollHeight;
-      field.style.height = height + 'px';
+      field.style.height = field.scrollHeight + 'px';
     }
 
-    // [페이지 로드] 이전 작성 기록 확인 (새로고침 방어)
+    // 1. 입력할 때마다 실시간 임시저장
+    function saveDraft() {
+      const draft = {
+        grade: document.getElementById("grade").value,
+        nickname: document.getElementById("nickname").value,
+        poster1: document.getElementById("poster1").value,
+        review1: document.getElementById("review1").value,
+        poster2: document.getElementById("poster2").value,
+        review2: document.getElementById("review2").value,
+        poster3: document.getElementById("poster3").value,
+        review3: document.getElementById("review3").value,
+        poster4: document.getElementById("poster4").value,
+        review4: document.getElementById("review4").value
+      };
+      localStorage.setItem("posterDraft", JSON.stringify(draft));
+      
+      const indicator = document.getElementById("saveStatus");
+      indicator.innerText = "자동 저장됨";
+    }
+
+    // 2. 초기 로드 시 복원
     window.addEventListener("DOMContentLoaded", () => {
-      const savedData = localStorage.getItem("posterReviewData");
-      if (savedData) {
-        const parsed = JSON.parse(savedData);
-        renderConfirmationView(parsed);
-
-        if (localStorage.getItem("posterStamped") === "true") {
-          const stampedTime = localStorage.getItem("posterStampedTime") || "";
-          displayStamp(stampedTime, false);
-        }
-      }
-    });
-
-    // 폼 제출 처리
-    async function handleSubmit(event) {
-      event.preventDefault();
-
-      if (GAS_WEB_APP_URL.includes("여기에_GAS")) {
-        alert("GAS_WEB_APP_URL이 설정되지 않았습니다.");
+      // 1순위: 이미 도장까지 최종 완료된 경우 -> 영구 잠금 화면
+      if (localStorage.getItem("posterStamped") === "true") {
+        const finalData = JSON.parse(localStorage.getItem("posterFinalData") || "{}");
+        renderConfirmationView(finalData);
+        displayStamp(localStorage.getItem("posterStampedTime") || "", false);
         return;
       }
 
-      const submitBtn = document.getElementById("submitBtn");
-      submitBtn.disabled = true;
-      submitBtn.innerText = "제출 처리 중...";
+      // 2순위: 작성 완료 후 도우미 확인 대기 중이었던 경우 -> 확인증 화면
+      if (localStorage.getItem("isReviewFinished") === "true") {
+        const draft = JSON.parse(localStorage.getItem("posterDraft") || "{}");
+        restoreForm(draft);
+        renderConfirmationView(draft);
+        return;
+      }
 
-      const formData = {
-        grade: document.getElementById("grade").value,
-        nickname: document.getElementById("nickname").value.trim(),
-        poster1: document.getElementById("poster1").value.trim(),
-        review1: document.getElementById("review1").value.trim(),
-        poster2: document.getElementById("poster2").value.trim(),
-        review2: document.getElementById("review2").value.trim(),
-        poster3: document.getElementById("poster3").value.trim(),
-        review3: document.getElementById("review3").value.trim(),
-        poster4: document.getElementById("poster4").value.trim(),
-        review4: document.getElementById("review4").value.trim()
-      };
+      // 3순위: 작성 중이던 임시저장 데이터가 있는 경우 -> 입력 폼에 채워넣기
+      const draft = localStorage.getItem("posterDraft");
+      if (draft) {
+        restoreForm(JSON.parse(draft));
+      }
+    });
 
-      try {
-        await fetch(GAS_WEB_APP_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(formData)
-        });
-
-        localStorage.setItem("posterReviewData", JSON.stringify(formData));
-        renderConfirmationView(formData);
-
-      } catch (err) {
-        console.error(err);
-        alert("제출 중 네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-        submitBtn.disabled = false;
-        submitBtn.innerText = "제출 완료하기";
+    function restoreForm(data) {
+      if (!data) return;
+      if (data.grade) document.getElementById("grade").value = data.grade;
+      if (data.nickname) document.getElementById("nickname").value = data.nickname;
+      for (let i = 1; i <= 4; i++) {
+        if (data['poster' + i]) document.getElementById('poster' + i).value = data['poster' + i];
+        if (data['review' + i]) {
+          const ta = document.getElementById('review' + i);
+          ta.value = data['review' + i];
+          autoExpand(ta);
+        }
       }
     }
 
-    // 확인증 렌더링
+    // 3. 학생이 '작성 완료 및 확인증 보기' 버튼을 눌렀을 때
+    function handleReviewCompleted(e) {
+      e.preventDefault();
+      saveDraft();
+      localStorage.setItem("isReviewFinished", "true");
+
+      const draft = JSON.parse(localStorage.getItem("posterDraft"));
+      renderConfirmationView(draft);
+    }
+
+    // 4. '내용 수정하기' 버튼을 눌렀을 때
+    function returnToEdit() {
+      localStorage.removeItem("isReviewFinished");
+      document.getElementById("result-view").style.display = "none";
+      document.getElementById("form-view").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+
+    // 확인증 뷰 그리기
     function renderConfirmationView(data) {
       document.getElementById("form-view").style.display = "none";
       document.getElementById("result-view").style.display = "block";
@@ -580,8 +597,8 @@
       window.scrollTo(0, 0);
     }
 
-    // 도우미 확인 도장 찍기
-    function applyStaffStamp() {
+    // 5. 도우미가 확인 도장 찍었을 때 (지연 0초 즉시 처리 + 백그라운드 시트 전송)
+    function applyStaffStampAndSubmit() {
       const now = new Date();
       const month = now.getMonth() + 1;
       const date = now.getDate();
@@ -589,16 +606,36 @@
       const mins = String(now.getMinutes()).padStart(2, '0');
       const timeString = `${month}월 ${date}일 ${hours}:${mins} 확인`;
 
+      // 1) 화면 UI 즉각 반응 (딜레이 체감 0초)
+      displayStamp(timeString, true);
+
+      // 2) 로컬스토리지에 최종 완료 상태 영구 기록
+      const draft = JSON.parse(localStorage.getItem("posterDraft"));
+      localStorage.setItem("posterFinalData", JSON.stringify(draft));
       localStorage.setItem("posterStamped", "true");
       localStorage.setItem("posterStampedTime", timeString);
 
-      displayStamp(timeString, true);
+      // 3) 구글 시트로 백그라운드 전송 (학생과 도우미를 기다리게 하지 않음)
+      if (!GAS_WEB_APP_URL.includes("여기에_GAS")) {
+        fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(draft)
+        }).catch(err => {
+          console.warn("시트 전송 대기열 전송 시도", err);
+        });
+      }
     }
 
-    // 도장 표기
     function displayStamp(timeText, isNew) {
+      // 도장 찍히면 수정 버튼과 도장 찍기 버튼 영구 제거
+      document.getElementById("editBtn").style.display = "none";
       document.getElementById("stampBtn").style.display = "none";
       document.getElementById("helperHint").style.display = "none";
+
+      const badge = document.getElementById("statusBadge");
+      badge.innerText = "✓ 최종 인증 완료";
+      badge.className = "status-badge confirmed";
 
       const stamp = document.getElementById("stampVisual");
       document.getElementById("stampDateText").innerText = timeText;
@@ -609,7 +646,6 @@
       stamp.style.display = "block";
     }
 
-    // XSS 방지용 문자열 이스케이프
     function escapeHtml(text) {
       if (!text) return "";
       return text
