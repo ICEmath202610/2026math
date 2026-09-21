@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>제12회 인천수학축전 주제선택프로젝트 관람 감상평</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --focus-ring: rgba(79, 70, 229, 0.15);
+      --stamp-red: #e11d48;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 20px 14px 40px;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    /* 상단 헤더 영역 */
+    .header-area {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 8px;
+    }
+
+    .header-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.6px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 5px;
+      letter-spacing: -0.3px;
+    }
+
+    /* 메인 카드 */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 22px 18px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* 인적사항 입력 그리드 */
+    .user-info-row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: -0.2px;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+      background-color: #f8fafc;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus, select:focus, textarea:focus {
+      background-color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus-ring);
+    }
+
+    /* 자동 확장 textarea */
+    textarea {
+      resize: none;
+      min-height: 48px;
+      overflow-y: hidden;
+      line-height: 1.5;
+    }
+
+    /* 4개 프로젝트 작성 블록 */
+    .project-card {
+      background: #fbfcfe;
+      border: 1px solid #edf2f7;
+      border-radius: 16px;
+      padding: 16px 14px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .project-card:focus-within {
+      border-color: #cbd5e1;
+      background: #ffffff;
+    }
+
+    .project-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .number-pill {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .project-field {
+      margin-bottom: 10px;
+    }
+
+    .project-field:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 안내 메시지 */
+    .notice-bar {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    /* 버튼 스타일 */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.985);
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+      margin-top: 4px;
+    }
+
+    .btn-submit:disabled {
+      background: #94a3b8;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* 결과 / 확인증 뷰 */
+    #result-view {
+      display: none;
+    }
+
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: #ecfdf5;
+      color: #059669;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .user-profile-card {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      margin: 16px 0 18px;
+    }
+
+    .user-meta-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .user-meta-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .review-display-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-display-item {
+      background: #fbfcfe;
+      border: 1px solid #f1f5f9;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .disp-subject-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .disp-subject-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2px 0 8px;
+    }
+
+    .disp-content-box {
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid #edf2f7;
+    }
+
+    /* 도우미 확인 버튼 */
+    .helper-section {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .btn-stamp {
+      background: #dc2626;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2);
+    }
+
+    .helper-hint {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+
+    /* 세련된 실선 인장(스탬프) 스타일 */
+    .stamp-wrap {
+      display: none;
+      margin: 22px auto 6px;
+      width: 170px;
+      padding: 8px 12px;
+      border: 3px solid var(--stamp-red);
+      border-radius: 14px;
+      position: relative;
+      transform: rotate(-5deg);
+      animation: stampAppear 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+      background: rgba(254, 242, 242, 0.4);
+    }
+
+    .stamp-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border: 1px solid var(--stamp-red);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    @keyframes stampAppear {
+      0% {
+        opacity: 0;
+        transform: scale(2) rotate(-20deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(-5deg);
+      }
+    }
+
+    .stamp-title {
+      color: var(--stamp-red);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .stamp-time {
+      color: var(--stamp-red);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 4px;
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 1. 작성 화면 -->
+    <div id="form-view">
+      <div class="header-area">
+        <div class="header-tag">수업 활동</div>
+        <h1>주제선택프로젝트 감상평</h1>
+        <p class="subtitle">관람한 4개의 프로젝트 주제와 솔직한 감상평을 적어주세요.</p>
+      </div>
+
+      <div class="card">
+        <form id="reviewForm" onsubmit="handleSubmit(event)">
+          <!-- 기본 인적사항 -->
+          <div class="user-info-row">
+            <div class="field-group">
+              <label for="grade">구분</label>
+              <select id="grade" required>
+                <option value="">선택</option>
+                <option value="초등학생">초등학생</option>
+                <option value="중학생">중학생</option>
+                <option value="고등학생">고등학생</option>
+                <option value="성인">성인</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="nickname">닉네임</label>
+              <input type="text" id="nickname" placeholder="재미있는 닉네임" required maxlength="12">
+            </div>
+          </div>
+
+          <div class="notice-bar">
+            💡 개인정보 보호를 위해 실명 대신 재미있는 닉네임을 적어주세요.<br>
+            💡 4가지 관심있는 주제를 감상하고 감상평을 작성 후 제출 버튼을 눌러주세요.<br>
+            💡 제출 후 확인증을 도우미에게 보여주고 확인 도장을 받아주세요.
+           </div>
+
+          <!-- 프로젝트 1~4 동적 생성 영역 -->
+          <div id="project-inputs"></div>
+
+          <button type="submit" id="submitBtn" class="btn btn-submit">
+            제출 완료하기
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. 결과 / 확인증 화면 -->
+    <div id="result-view">
+      <div class="header-area">
+        <div class="result-badge">✓ 접수 완료</div>
+        <h1>관람 확인증</h1>
+      </div>
+
+      <div class="card">
+        <div class="user-profile-card">
+          <div class="user-meta-label">작성자</div>
+          <div class="user-meta-val" id="disp-user"></div>
+        </div>
+
+        <div class="review-display-list" id="disp-reviews"></div>
+
+        <!-- 도우미 확인 영역 -->
+        <div class="helper-section">
+          <button type="button" id="stampBtn" class="btn btn-stamp" onclick="applyStaffStamp()">
+            [도우미 전용] 확인 도장 찍기
+          </button>
+          <div id="helperHint" class="helper-hint">도우미에게 화면을 보여주고 도장을 받으세요.</div>
+
+          <!-- 세련된 인장 디자인 -->
+          <div id="stampVisual" class="stamp-wrap">
+            <div class="stamp-title">확인완료</div>
+            <div id="stampDateText" class="stamp-time"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ★ 배포한 Google Apps Script 웹앱 URL을 입력하세요 ★
+    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/AKfycbxbkIpSf1NresA2WacVQGrxO-QvsYGjIEHYpL9PHObr4OMpSmCLgAyeGFxleLQGnmSw/exec";
+
+    // 4개 프로젝트 입력 폼 동적 생성
+    const container = document.getElementById("project-inputs");
+    for (let i = 1; i <= 4; i++) {
+      const block = document.createElement("div");
+      block.className = "project-card";
+
+      block.innerHTML = `
+        <div class="project-card-header">
+          <div class="number-pill">${i}</div>
+          <div class="project-card-title">프로젝트 #${i}</div>
+        </div>
+        
+        <div class="project-field">
+          <label for="poster${i}">관람 주제선택프로젝트 주제</label>
+          <input type="text" id="poster${i}" placeholder="관람한 프로젝트의 주제를 입력하세요" required>
+        </div>
+
+        <div class="project-field">
+          <label for="review${i}">주제선택프로젝트 관람 후 감상평 입력</label>
+          <textarea id="review${i}" placeholder="인상 깊었던 점이나 느낀 점을 자유롭게 적어주세요" required oninput="autoExpand(this)"></textarea>
+        </div>
+      `;
+      container.appendChild(block);
+    }
+
+    // 텍스트 길이에 따라 높이가 자연스럽게 늘어나는 함수
+    function autoExpand(field) {
+      field.style.height = 'inherit';
+      const computed = window.getComputedStyle(field);
+      const height = field.scrollHeight;
+      field.style.height = height + 'px';
+    }
+
+    // [페이지 로드] 이전 작성 기록 확인 (새로고침 방어)
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedData = localStorage.getItem("posterReviewData");
+      if (savedData) {
+        const parsed = JSON.parse(savedData);
+        renderConfirmationView(parsed);
+
+        if (localStorage.getItem("posterStamped") === "true") {
+          const stampedTime = localStorage.getItem("posterStampedTime") || "";
+          displayStamp(stampedTime, false);
+        }
+      }
+    });
+
+    // 폼 제출 처리
+    async function handleSubmit(event) {
+      event.preventDefault();
+
+      if (GAS_WEB_APP_URL.includes("여기에_GAS")) {
+        alert("GAS_WEB_APP_URL이 설정되지 않았습니다.");
+        return;
+      }
+
+      const submitBtn = document.getElementById("submitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerText = "제출 처리 중...";
+
+      const formData = {
+        grade: document.getElementById("grade").value,
+        nickname: document.getElementById("nickname").value.trim(),
+        poster1: document.getElementById("poster1").value.trim(),
+        review1: document.getElementById("review1").value.trim(),
+        poster2: document.getElementById("poster2").value.trim(),
+        review2: document.getElementById("review2").value.trim(),
+        poster3: document.getElementById("poster3").value.trim(),
+        review3: document.getElementById("review3").value.trim(),
+        poster4: document.getElementById("poster4").value.trim(),
+        review4: document.getElementById("review4").value.trim()
+      };
+
+      try {
+        await fetch(GAS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(formData)
+        });
+
+        localStorage.setItem("posterReviewData", JSON.stringify(formData));
+        renderConfirmationView(formData);
+
+      } catch (err) {
+        console.error(err);
+        alert("제출 중 네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "제출 완료하기";
+      }
+    }
+
+    // 확인증 렌더링
+    function renderConfirmationView(data) {
+      document.getElementById("form-view").style.display = "none";
+      document.getElementById("result-view").style.display = "block";
+
+      document.getElementById("disp-user").innerText = `[${data.grade}] ${data.nickname}`;
+
+      let html = "";
+      for (let i = 1; i <= 4; i++) {
+        html += `
+          <div class="review-display-item">
+            <div class="disp-subject-label">관람 프로젝트 #${i}</div>
+            <div class="disp-subject-text">${escapeHtml(data['poster' + i])}</div>
+            <div class="disp-content-box">${escapeHtml(data['review' + i])}</div>
+          </div>
+        `;
+      }
+      document.getElementById("disp-reviews").innerHTML = html;
+      window.scrollTo(0, 0);
+    }
+
+    // 도우미 확인 도장 찍기
+    function applyStaffStamp() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const timeString = `${month}월 ${date}일 ${hours}:${mins} 확인`;
+
+      localStorage.setItem("posterStamped", "true");
+      localStorage.setItem("posterStampedTime", timeString);
+
+      displayStamp(timeString, true);
+    }
+
+    // 도장 표기
+    function displayStamp(timeText, isNew) {
+      document.getElementById("stampBtn").style.display = "none";
+      document.getElementById("helperHint").style.display = "none";
+
+      const stamp = document.getElementById("stampVisual");
+      document.getElementById("stampDateText").innerText = timeText;
+
+      if (!isNew) {
+        stamp.style.animation = "none";
+      }
+      stamp.style.display = "block";
+    }
+
+    // XSS 방지용 문자열 이스케이프
+    function escapeHtml(text) {
+      if (!text) return "";
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
