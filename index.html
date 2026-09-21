@@ -377,18 +377,86 @@
       text-align: center;
       margin-top: 4px;
     }
+
+    /* 팝업 모달 스타일 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 330px;
+      border-radius: 20px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+      animation: modalPop 0.2s ease-out forwards;
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .modal-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-modal-cancel {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .btn-modal-confirm {
+      background: #dc2626;
+      color: #ffffff;
+      padding: 12px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     
-    <!-- 1. 작성 화면 (form 태그 제거로 오작동 원천 차단) -->
+    <!-- 1. 작성 화면 -->
     <div id="form-view">
       <div class="header-area">
         <div class="header-tag">제12회 인천수학축전</div>
         <h1>주제탐구프로젝트 감상평</h1>
-        <p class="subtitle">4개의 프로젝트 주제 선택해 솔직한 감상평을 적어주세요.</p>
+        <p class="subtitle">4개 프로젝트 주제와 솔직한 감상평을 적어주세요.</p>
       </div>
 
       <div class="card">
@@ -411,15 +479,13 @@
         </div>
 
         <div class="notice-bar">
-            💡 개인정보 보호를 위해 실명 대신 닉네임을 적어주세요.<br>
-            💡 4가지 관심있는 주제를 선택해 감상평을 작성 후 제출 완료하기<br>
-            💡 제출 후 확인증을 도우미에게 보여주고 확인 도장을 받기
+          <span>💡 실명 대신 닉네임을 적어주세요.</span>
+          <span id="saveStatus" class="save-indicator">자동 저장됨</span>
         </div>
 
         <!-- 프로젝트 1~4 입력 영역 -->
         <div id="project-inputs"></div>
 
-        <!-- onclick 직접 연결 -->
         <button type="button" id="completeBtn" class="btn btn-primary" onclick="goToConfirm()" style="margin-top: 10px;">
           작성 완료 및 확인증 보기
         </button>
@@ -446,9 +512,9 @@
           ✎ 내용 수정하기
         </button>
 
-        <!-- 도우미 확인 영역 -->
+        <!-- 도우미 확인 영역 (클릭 시 확인 팝업 모달 호출) -->
         <div class="helper-section">
-          <button type="button" id="stampBtn" class="btn btn-stamp" onclick="applyStaffStampAndSubmit()">
+          <button type="button" id="stampBtn" class="btn btn-stamp" onclick="openConfirmModal()">
             [도우미 전용] 확인 도장 찍기
           </button>
           <div id="helperHint" class="helper-hint">부스 도우미에게 보여주고 도장을 받으세요.</div>
@@ -463,10 +529,25 @@
 
   </div>
 
+  <!-- 실수 방지용 팝업 모달 -->
+  <div id="confirmModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-icon">🚨</div>
+      <div class="modal-title">도우미 확인 전용</div>
+      <div class="modal-desc">
+        부스 도우미가 학생의 관람 내용을 확인한 후 누르는 버튼입니다.<br>
+        <strong>도장을 찍으시겠습니까?</strong>
+      </div>
+      <div class="modal-btn-group">
+        <button type="button" class="btn btn-modal-cancel" onclick="closeConfirmModal()">취소</button>
+        <button type="button" class="btn btn-modal-confirm" onclick="confirmStampAction()">도장 찍기</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ★ 선생님의 Google Apps Script 배포 URL ★
-const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/AKfycbxbkIpSf1NresA2WacVQGrxO-QvsYGjIEHYpL9PHObr4OMpSmCLgAyeGFxleLQGnmSw/exec";
-
+    const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/AKfycbxbkIpSf1NresA2WacVQGrxO-QvsYGjIEHYpL9PHObr4OMpSmCLgAyeGFxleLQGnmSw/exec";
     // 4개 블록 동적 렌더링
     const container = document.getElementById("project-inputs");
     for (let i = 1; i <= 4; i++) {
@@ -521,7 +602,6 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
 
     // 2. 초기 로드 시 복원
     window.addEventListener("DOMContentLoaded", () => {
-      // 1) 최종 도장 완료자
       if (localStorage.getItem("posterStamped") === "true") {
         const finalData = JSON.parse(localStorage.getItem("posterFinalData") || "{}");
         renderConfirmationView(finalData);
@@ -529,7 +609,6 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
         return;
       }
 
-      // 2) 확인증 대기 상태
       if (localStorage.getItem("isReviewFinished") === "true") {
         const draft = JSON.parse(localStorage.getItem("posterDraft") || "{}");
         restoreForm(draft);
@@ -537,7 +616,6 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
         return;
       }
 
-      // 3) 작성 중인 내용 복원
       const saved = localStorage.getItem("posterDraft");
       if (saved) {
         try {
@@ -560,7 +638,7 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
       }
     }
 
-    // 3. '작성 완료 및 확인증 보기' 버튼 누를 때 (단순 직관적 실행)
+    // 3. '작성 완료 및 확인증 보기' 클릭
     function goToConfirm() {
       const grade = document.getElementById("grade").value;
       const nickname = document.getElementById("nickname").value.trim();
@@ -577,7 +655,6 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
         return;
       }
 
-      // 4개 프로젝트 빈 칸 체크
       for (let i = 1; i <= 4; i++) {
         const p = document.getElementById("poster" + i).value.trim();
         const r = document.getElementById("review" + i).value.trim();
@@ -596,7 +673,6 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
         }
       }
 
-      // 통과 시 상태 저장 및 확인 화면 전환
       saveDraft();
       localStorage.setItem("isReviewFinished", "true");
 
@@ -633,7 +709,24 @@ const GAS_WEB_APP_URL = "https://script.google.com/a/macros/gclass.ice.go.kr/s/A
       window.scrollTo(0, 0);
     }
 
-    // 5. 도우미 확인 도장 찍기
+    // 5. 모달 팝업 제어
+    function openConfirmModal() {
+      const modal = document.getElementById("confirmModal");
+      modal.style.display = "flex";
+    }
+
+    function closeConfirmModal() {
+      const modal = document.getElementById("confirmModal");
+      modal.style.display = "none";
+    }
+
+    // 모달에서 '도장 찍기' 확인을 눌렀을 때 실행
+    function confirmStampAction() {
+      closeConfirmModal();
+      applyStaffStampAndSubmit();
+    }
+
+    // 6. 도우미 확인 도장 찍기 및 백엔드 전송
     function applyStaffStampAndSubmit() {
       const now = new Date();
       const month = now.getMonth() + 1;
